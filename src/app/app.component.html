@@ -1,6 +1,3 @@
-
-
-
 <div class="container ">
   <nav class="navbar navbar-expand-lg navbar-light bg-info mb-3 " >
     <div class="container-fluid">
@@ -11,10 +8,12 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active text-white" aria-current="page">Mes Clients</a>
+            <a routerLink="/clients" RouterLinkActive="active" class="nav-link active text-white" aria-current="page"
+            >Mes Clients
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white">Mes Commandes</a>
+            <a routerLink="/commandes" RouterLinkActive="active" class="nav-link text-white">Mes Commandes</a>
           </li>
 
           <li class="nav-item">
@@ -28,6 +27,5 @@
     </div>
   </nav>
 </div>
-<section  >
 
-</section>
+<router-outlet></router-outlet>
