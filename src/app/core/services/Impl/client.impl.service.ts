@@ -16,7 +16,7 @@ export class ClientImplService implements ClientService {
   constructor(private http:HttpClient) {
   }
 
-  findAll(page:number): Observable<RestResponse<ClientListe[]>> {
-        return  this.http.get<RestResponse<ClientListe[]>>(`${this.API_URL}?page=${page}`);
+  findAll(page:number,keyword:string=""): Observable<RestResponse<ClientListe[]>> {
+        return  this.http.get<RestResponse<ClientListe[]>>(`${this.API_URL}?page=${page}&keyword=${keyword}`);
     }
 }

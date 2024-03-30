@@ -1,1 +1,35 @@
-<p>commandes works!</p>
+<div class="container mt-2">
+  <div class="card mt-1">
+    <div class="card-header">
+      <h3>Liste des Commandes</h3>
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+          <th scope="col">ID Commande</th>
+          <th scope="col">Date de Commande</th>
+          <th scope="col">Montant Commande</th>
+          <th scope="col">Adresse Commande</th>
+          <th scope="col">Etat Commande</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for (commande of response?.results; track $index) {
+          <tr>
+            <td >{{commande.id}}</td>
+            <td>{{commande.dateCommand}}</td>
+            <td> {{commande.montant}}</td>
+            <td>{{commande.adresse.quartier}}</td>
+            <td>
+              <a class="btn btn-outline-warning">{{commande.etat}}</a>
+            </td>
+
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

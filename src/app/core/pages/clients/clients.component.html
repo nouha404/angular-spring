@@ -13,12 +13,13 @@
 
       <div class="card-body">
         <!--Formulaire de recherche-->
-        <form method="get" class="d-flex w-50 mb-5">
+        <div class="d-flex w-50 mb-5">
           <input type="search" name="telephone"
                  id="telephone" aria-label="search" class="mb-2"
+                 #keyword
+                 (keyup)="searchTel(keyword.value)"
           >
-          <button type="submit" class="btn btn-outline-success ">Search</button>
-        </form>
+        </div>
 
         <table class="table table-bordered">
           <thead>
@@ -40,7 +41,9 @@
                 <td>{{item.adresseComplet}}</td>
 
                 <td>
-                  <a class="btn btn-outline-success" >Mes Commandes</a>
+                  <a
+                   routerLink="/commandes/{{item.id}}",
+                   class="btn btn-outline-success" >Mes Commandes</a>
                   <a  class="btn btn-outline-success ">Nouveau commande</a>
                 </td>
              </tr>
@@ -58,6 +61,7 @@
             <li class="page-item">
 
               <a class="page-link"
+                   [ngClass]="{'active':$index==response?.currentPage}"
                   (click)="paginate($index)"
                   [textContent]="$index+1"
                  >
@@ -75,6 +79,7 @@
 
           </ul>
         </nav>
+
 
       </div>
     </div>

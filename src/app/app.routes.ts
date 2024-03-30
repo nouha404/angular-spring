@@ -9,7 +9,7 @@ export const routes: Routes = [
     component:ClientsComponent
   },
   {
-    path:"commandes",
+    path:"commandes/:id",
     component:CommandesComponent
   },
   {

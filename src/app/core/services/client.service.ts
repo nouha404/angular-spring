@@ -3,5 +3,5 @@ import {RestResponse} from "../models/rest.response";
 import {Observable} from "rxjs";
 
 export interface ClientService {
-  findAll(page:number): Observable<RestResponse<ClientListe[]>>;
+  findAll(page:number,keyword:string): Observable<RestResponse<ClientListe[]>>;
 }
