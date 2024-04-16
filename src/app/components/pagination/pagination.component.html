@@ -1,0 +1,24 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    @for( item of data.pages; track $index){
+    <li class="page-item">
+
+      <a class="page-link"
+           [ngClass]="{'active':$index==data.currentPage}"
+          (click)="paginate($index)"
+          [textContent]="$index+1"
+         >
+        Previous
+      </a>
+    </li>
+
+    }
+    <li class="page-item">
+      <a class="page-link"
+      >
+        Next
+      </a>
+    </li>
+
+  </ul>
+</nav>

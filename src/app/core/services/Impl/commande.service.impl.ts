@@ -13,7 +13,7 @@ export class CommandeServiceImpl implements CommandeService{
   }
 
   findAll(page: number,idClient: string | null): Observable<RestResponse<CommandeListe[]>> {
-    // si id client = all sinon commandes/client/id
+    // si id client = all sinon commandes/client/id : 
     const url:string =idClient=="all"? `${this.API_URL}?page=${page}` : `${this.API_URL}/client/${idClient}?page=${page}` ;
     return  this.http.get<RestResponse<CommandeListe[]>>(url);
   }

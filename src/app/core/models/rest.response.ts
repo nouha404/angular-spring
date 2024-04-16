@@ -6,6 +6,6 @@ export interface RestResponse<T> {
   itemsItems? : number[],
   totalPages? : number,
   results : T, // generic
-  status : number
+  statuts : number
 
 }

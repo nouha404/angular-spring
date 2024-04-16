@@ -4,5 +4,15 @@ export interface ClientListe {
   telephone : string
   quartier : string,
   numVilla : string,
+  ville : string,
   adresseComplet : string
+}
+
+export interface ClientCreate {
+  id? : number,
+  nomComplet : string,
+  telephone : string
+  quartier : string,
+  numVilla : string,
+  ville : string,
 }

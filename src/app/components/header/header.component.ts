@@ -15,8 +15,11 @@ export class HeaderComponent {
   constructor(private router:Router){
 
   }
-async onLoadView() {
-  await this.router.navigateByUrl("/commandes/all",{skipLocationChange:true});
+onLoadView() {
+  // await this.router.navigateByUrl("/commandes/all",{skipLocationChange:true});
+  this.router.navigateByUrl("/",{skipLocationChange:true}).then(()=>{
+    this.router.navigate(['/commandes/all'])
+  });
 }
 
 }

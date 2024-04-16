@@ -1,0 +1,65 @@
+<section  >
+  <div class="container mt-2">
+    <!--Nav-->
+    <!--<div th:replace="nav :: nav"></div>-->
+    <div class="card mt-1">
+      <div class="card-header">
+        <h3>Liste des Clients</h3>
+        <div class="my- float-end">
+          <a routerLink="form"
+            class="btn btn-outline-info ">Nouveau</a>
+
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!--Formulaire de recherche-->
+
+          <input #keyword type="search" name="telephone"
+                  aria-label="search" class="mb-2"
+
+          (keyup)="searchTel(keyword.value)"
+          >
+
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                <th>Nom et Prenom</th>
+                <th>Telephone</th>
+                <th>Quartier</th>
+                <th>Numero Villa</th>
+                <th>Commandes</th>
+              </tr>
+          </thead>
+          <tbody>
+
+            @for (item of response?.results; track $index) {
+              <tr>
+                <td>{{item.nomComplet}}</td>
+                <td>{{item.telephone}} </td>
+                <td>{{item.numVilla}}</td>
+                <td>{{item.adresseComplet}}</td>
+
+                <td>
+                  <a [routerLink]="'/commandes/' + item.id" class="btn btn-outline-success">Mes Commandes</a>
+                  <a class="btn btn-outline-success">Nouveau commande</a>
+                </td>
+             </tr>
+            }
+
+
+
+
+          </tbody>
+        </table>
+
+        <app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)" ></app-pagination>
+
+
+      </div>
+    </div>
+    <!-- Content here -->
+
+  </div>
+</section>
+

@@ -18,9 +18,9 @@
         @for (commande of response?.results; track $index) {
           <tr>
             <td >{{commande.id}}</td>
-            <td>{{commande.dateCommand}}</td>
+            <td>{{commande.dateCommand| date: 'dd/MM/yyyy' }} </td>
             <td> {{commande.montant}}</td>
-            <td>{{commande.adresse.quartier}}</td>
+            <td>{{ commande.adresse.numVilla+ " | "+commande.adresse.quartier}}</td>
             <td>
               <a class="btn btn-outline-warning">{{commande.etat}}</a>
             </td>
@@ -29,6 +29,8 @@
         }
         </tbody>
       </table>
+
+      <app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)"></app-pagination>
     </div>
 
   </div>
