@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ClientService} from "../client.service";
-import { ClientCreate, ClientListe } from '../../models/client.liste';
+import { ClientCreate, ClientFormCommande, ClientListe } from '../../models/client.liste';
 import { RestResponse } from '../../models/rest.response';
 import {environment} from "../../../../environments/environment.development";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -15,6 +15,10 @@ export class ClientImplService implements ClientService {
 
   constructor(private http:HttpClient) {
   }
+  findByTel(telephone: string): Observable<RestResponse<ClientListe>> {
+    ///clients/telephone/{telephone}"
+    return  this.http.get<RestResponse<ClientListe>>(`${this.API_URL}/clients/telephone/${telephone}`);
+  }
   create(clientCreate: ClientCreate): Observable<RestResponse<ClientCreate[]>> {
 
     return  this.http.post<RestResponse<ClientCreate[]>>(`${this.API_URL}`,clientCreate); //l'onformation a envoyer clientCreate
@@ -22,6 +26,6 @@ export class ClientImplService implements ClientService {
 
   findAll(page:number,keyword:string=""): Observable<RestResponse<ClientListe[]>> {
 
-        return  this.http.get<RestResponse<ClientListe[]>>(`${this.API_URL}?page=${page}&keyword=${keyword}`);
+        return  this.http.get<RestResponse<ClientListe[]>>(`${this.API_URL}?page=${page}&telephone=${keyword}`);
     }
 }

@@ -16,3 +16,10 @@ export interface ClientCreate {
   numVilla : string,
   ville : string,
 }
+
+export interface ClientFormCommande {
+  id : number,
+  nomComplet : string,
+  telephone : string
+  adresseComplet : string
+}

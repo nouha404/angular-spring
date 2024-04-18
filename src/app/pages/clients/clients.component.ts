@@ -24,7 +24,7 @@ export class ClientsComponent implements OnInit{
   }; //je vais l'uitlialiser
 
 
-  constructor(private clientService:ClientImplService,private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private clientService:ClientImplService) {
   }
 
 
@@ -47,7 +47,6 @@ export class ClientsComponent implements OnInit{
         //remplis le dataPagination
         this.dataPagination.pages=data.pages!
         this.dataPagination.currentPage=data.currentPage!
-        this.changeDetectorRef.detectChanges();
 
       }
 
@@ -56,7 +55,7 @@ export class ClientsComponent implements OnInit{
   }
 
   searchTel(telephone: string){
-    if (telephone.length>=3){
+    if (telephone.length>=5){
         this.refresh(0,telephone)
     }
   }

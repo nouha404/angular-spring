@@ -37,7 +37,6 @@ export class CommandesComponent implements OnInit {
     this.commandeService.findAll(page,this.idClient).subscribe(
       data=>{
         this.response=data
-
         this.dataPagination.pages=data.pages!
         this.dataPagination.currentPage=data.currentPage!
       }
