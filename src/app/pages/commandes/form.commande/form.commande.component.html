@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="card mt-2">
+      <div class="card-header">
+          <h5>Enregistrement d'une commande</h5>
+      </div>
+      <div class="card-body">
+          <div class="row">
+              <div class="col">
+                <input
+                        placeholder="telephone"
+                        type="text" class="form-control"  aria-label="Last name">
+              </div>
+
+              <div class="col">
+                  <input
+                          readonly
+                          placeholder="nomComplet"
+                          type="text" class="form-control"  aria-label="First name">
+              </div>
+
+              <div class="col">
+                  <input
+                    placeholder="Adresse"
+                          type="text" class="form-control"  aria-label="Last name">
+              </div>
+          </div>
+
+          <!--End Info Client-->
+          <form class="col-md-8 offset-2"
+
+
+          >
+              <div class="row">
+                <div class="col">
+                    <input
+
+                            name="article"
+                            placeholder="Libelle"
+                            type="text" class="form-control"  aria-label="First name">
+                </div>
+
+                <div class="col">
+                    <input
+                            name="quantite"
+                            placeholder="Quantite stock"
+
+                            type="text" class="form-control"  aria-label="Last name">
+                </div>
+
+                  <div class="col">
+                      <input
+                              name="prix"
+                              placeholder="Prix Unitaire"
+                              type="text" class="form-control"  aria-label="First name">
+                  </div>
+
+                    <div class="col">
+                        <input
+                                name="qteCommande"
+                                placeholder="Quantite commande"
+                                type="text" class="form-control"  aria-label="First name">
+                    </div>
+
+
+                  <div class="col">
+                      <button class="btn btn-outline-success" type="submit">Ajouter</button>
+                  </div>
+
+              </div>
+
+
+          </form>
+
+          <!--Table -->
+          <h5 class="my-3">Panier Article</h5>
+          <table class="table table-bordered">
+              <thead>
+              <tr>
+                  <th>Article</th>
+                  <th>Prix</th>
+                  <th>Qte</th>
+                  <th>Montant</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr >
+                  <td >libelle</td>
+                  <td  >prix</td>
+                  <td  >quantite</td>
+                  <td  >montant</td>
+              </tr>
+              </tbody>
+
+          </table>
+
+          <!--Total-->
+          <div class="row ">
+              <div class="col ">
+                  <button type="button" class="btn btn-info fs-5">
+                      Total <span class="badge  text-white fs-4 font-monospace"
+
+                  >0.0</span>
+                  </button>
+              </div>
+              <div class="col  ">
+                  <a    class="btn btn-success float-end">
+                      Valider la commande
+                  </a>
+              </div>
+          </div>
+
+
+
+      </div>
+  </div>
+</div>

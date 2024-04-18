@@ -3,6 +3,7 @@ import {ClientsComponent} from "./pages/clients/clients.component";
 import {CommandesComponent} from "./pages/commandes/commandes.component";
 import {PageNotFoundComponent} from "./pages/page-not-found/page-not-found.component";
 import { FormClientComponent } from './pages/clients/form.client/form.client.component';
+import { FormCommandeComponent } from './pages/commandes/form.commande/form.commande.component';
 
 export const routes: Routes = [
   {
@@ -19,10 +20,14 @@ export const routes: Routes = [
       },
     ]
   },
+  {
+    path:"form-comande",
+    component:FormCommandeComponent,
+  },
 
   {
     path:"commandes/:id",
-    component:CommandesComponent
+    component:CommandesComponent,
   },
   {
     path: '',

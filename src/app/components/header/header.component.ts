@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
@@ -11,15 +11,14 @@ import {Router, RouterLink, RouterLinkActive} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent{
   constructor(private router:Router){
-
   }
 onLoadView() {
-  // await this.router.navigateByUrl("/commandes/all",{skipLocationChange:true});
-  this.router.navigateByUrl("/",{skipLocationChange:true}).then(()=>{
-    this.router.navigate(['/commandes/all'])
-  });
+  this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
+         this.router.navigate([`/commandes/all`])
+  })
 }
+
 
 }

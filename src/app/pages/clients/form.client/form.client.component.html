@@ -83,10 +83,7 @@
                           name="quartier"
                           [(ngModel)]="clientCreate.quartier"
                           type="text" class="form-control" id="quartier" aria-describedby="emailHelp">
-                  <small id="" class="form-text text-danger">
-                    {{clientCreate.quartier}}
-
-                  </small>
+                  
               </div>
               <div class="mb-3">
                   <label for="numVilla"
@@ -95,10 +92,7 @@
                           name="numVilla"
                           [(ngModel)]="clientCreate.numVilla"
                           type="text" class="form-control" id="numVilla" aria-describedby="emailHelp">
-                  <small id="" class="form-text text-danger">
-                    {{clientCreate.numVilla}}
 
-                  </small>
               </div>
               <div>
                   <button [disabled]="formClient.invalid" type="submit" class="float-end btn btn-primary">Enregister</button>

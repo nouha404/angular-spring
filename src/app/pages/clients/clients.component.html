@@ -1,4 +1,3 @@
-<section  >
   <div class="container mt-2">
     <!--Nav-->
     <!--<div th:replace="nav :: nav"></div>-->
@@ -21,7 +20,7 @@
           (keyup)="searchTel(keyword.value)"
           >
 
-        <table class="table table-bordered">
+        <table class="table table-bordered" *ngIf="response?.results?.length">
           <thead>
               <tr>
                 <th>Nom et Prenom</th>
@@ -46,20 +45,13 @@
                 </td>
              </tr>
             }
-
-
-
-
           </tbody>
         </table>
 
-        <app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)" ></app-pagination>
-
-
+        <!--<app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)" ></app-pagination>-->
       </div>
     </div>
     <!-- Content here -->
 
   </div>
-</section>
 

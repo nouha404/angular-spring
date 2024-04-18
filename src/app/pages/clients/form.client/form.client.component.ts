@@ -24,7 +24,7 @@ export class FormClientComponent {
   //balancer mes données
   onSaveFormulaire() {
     this.clientService.create(this.clientCreate).subscribe(data=>{
-      if(data.status==201){
+      if(data.statuts==201){
           this.router.navigateByUrl('/clients')
       } else{
         this.errors=data.results;

@@ -2,6 +2,13 @@
   <div class="card mt-1">
     <div class="card-header">
       <h3>Liste des Commandes</h3>
+      <div class="my- float-end">
+
+        <a routerLink="/form-comande"
+          class="btn btn-outline-info ">Nouveau commande
+        </a>
+
+      </div>
     </div>
     <div class="card-body">
       <table class="table table-bordered table-hover">
@@ -30,7 +37,7 @@
         </tbody>
       </table>
 
-      <app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)"></app-pagination>
+      <!--<app-pagination [data]="dataPagination" (onGetNumberPage)="paginate($event)"></app-pagination>-->
     </div>
 
   </div>

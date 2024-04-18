@@ -30,13 +30,14 @@ export class CommandesComponent implements OnInit {
   ngOnInit(): void {
     this.idClient = this.route.snapshot.paramMap.get("id"); // l'id qui j'ai mis dans client routerLink="/commandes/{{item.id}} et path:"commandes/:id"
     this.refresh();
+
   }
 
   refresh(page:number=0){
     this.commandeService.findAll(page,this.idClient).subscribe(
       data=>{
         this.response=data
-        console.log(this.response=data);
+
         this.dataPagination.pages=data.pages!
         this.dataPagination.currentPage=data.currentPage!
       }
