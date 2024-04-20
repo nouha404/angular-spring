@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import {ClientImplService} from "./core/services/Impl/client.impl.service";
+import {RouterOutlet} from '@angular/router';
 
-import {CommandeServiceImpl} from "./core/services/Impl/commande.service.impl";
-import {HeaderComponent} from "./secure/components/header/header.component";
+
 
 @Component({
   selector: 'app-root',
@@ -12,7 +10,7 @@ import {HeaderComponent} from "./secure/components/header/header.component";
   //imports: [RouterOutlet, ClientsComponent, ClientsComponent, HeaderComponent],
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  providers: [CommandeServiceImpl],
+  //providers: [CommandeServiceImpl],
   styleUrl: './app.component.css'
 })
 export class AppComponent{

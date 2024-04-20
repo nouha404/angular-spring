@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthentificateService {
-  isAuthentificated=false //on simule slm pour tester
+  isAuthentificated=true //on simule slm pour tester
   constructor() { }
 }

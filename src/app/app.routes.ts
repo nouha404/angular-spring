@@ -13,16 +13,17 @@ export const routes: Routes = [
     loadChildren:()=> import("./secure/secure.module").then(module=>module.SecureModule),  //charger les modules
     canMatch:[()=>inject(AuthentificateService).isAuthentificated] //ne doit etre charger que si on est connecte
   },
+
   {
     path:"client",
     loadChildren:()=> import("./public/public.module").then(module=>module.PublicModule),  //charger les modules
   },
   {
     path: '',
-    redirectTo:'/clients',
+    redirectTo:'/admin/clients',
     pathMatch : "full"
   },
-  { 
+  {
     path:"**",
     component: PageNotFoundComponent // faut toujours mettre cette path en bas
   }

@@ -11,32 +11,30 @@ const routes: Routes = [
   {
     path:"",
     component:LayoutComponent,
-
     children:[
-      {
-        path:"clients",
-        children: [
-            {
-              path:"",
-              component:ClientsComponent,
-            },
-            {
-              path:"form",
-              component:FormClientComponent
-            },
-        ]
-      },
+        {
+          path:"clients",
+          children: [
+              {
+                path:"",
+                component:ClientsComponent,
+              },
+              {
+                path:"form",
+                component:FormClientComponent
+              },
+          ]
+        },
 
-      {
-        path:"form-comande",
-        component:FormCommandeComponent,
-      },
+        {
+          path:"form-comande",
+          component:FormCommandeComponent,
+        },
 
-
-      {
-        path:"commandes/:id",
-        component:CommandesComponent,
-      },
+        {
+          path:"commandes/:id",
+          component:CommandesComponent,
+        },
 
     ]
   }

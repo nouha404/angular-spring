@@ -19,6 +19,8 @@ export class CatalogueComponent implements OnInit {
   ngOnInit(): void {
     this.articleService.findAll().subscribe(data=>{
       if(data.statuts==200){
+        console.log(data);
+
         this.response=data
       }
     })

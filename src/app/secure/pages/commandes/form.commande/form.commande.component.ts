@@ -162,7 +162,7 @@ export class FormCommandeComponent implements OnInit{
         if(data.statuts==204){
           console.log("creation reussi");
           this.form.reset()
-          this.router.navigateByUrl("/commandes/all")
+          this.router.navigateByUrl("/admin/commandes/all")
         }
       })
       }

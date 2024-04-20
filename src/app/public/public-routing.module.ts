@@ -7,17 +7,11 @@ const routes: Routes = [
   {
     path:"",
     component:LayoutComponent,
-    children:[
-              {
-                children: [
-                    {
-                      path:"catalogue",
-                      component:CatalogueComponent
-                    },
-                    
-                ]
-              },
-
+    children: [
+      {
+        path: 'catalogue',
+        component: CatalogueComponent
+      }
     ]
   }
 

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {RestResponse} from "../../../core/models/rest.response";
 import {CommandeListe} from "../../../core/models/commande.liste";
-import {CommandeServiceImpl} from "../../../core/services/Impl/commande.service.impl";
 import {CommonModule} from "@angular/common";
 import {ActivatedRoute, RouterLink, RouterLinkActive} from "@angular/router";
 
 import {PaginationModel} from "../../../core/models/pagination.model";
 import { PaginationComponent } from '../../../core/components/pagination/pagination.component';
+import { CommandeServiceImpl } from '../../../core/services/Impl/commande.service.impl';
 
 @Component({
   selector: 'app-commandes',
@@ -23,6 +23,8 @@ export class CommandesComponent implements OnInit {
     currentPage:0
   };
   //route:ActivatedRoute service qui permet de recuperer  route active
+  // constructor(private clientService:ClientImplService) {
+  //}
   constructor(
     private commandeService:CommandeServiceImpl,
     private route:ActivatedRoute
@@ -31,6 +33,7 @@ export class CommandesComponent implements OnInit {
   ngOnInit(): void {
     this.idClient = this.route.snapshot.paramMap.get("id"); // l'id qui j'ai mis dans client routerLink="/commandes/{{item.id}} et path:"commandes/:id"
     this.refresh();
+    console.log("commande init");
 
   }
 
