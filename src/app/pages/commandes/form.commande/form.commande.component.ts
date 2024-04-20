@@ -3,6 +3,7 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormsM
 import { ClientImplService } from '../../../core/services/Impl/client.impl.service';
 import { Router } from '@angular/router';
 import { ArticleServiceImpl } from '../../../core/services/Impl/article.impl.service';
+import { CommandeServiceImpl } from '../../../core/services/Impl/commande.service.impl';
 
 @Component({
   selector: 'app-form.commande',
@@ -18,7 +19,8 @@ export class FormCommandeComponent implements OnInit{
     private clientService:ClientImplService,
     private router:Router,
     private formBuilder : FormBuilder,
-    private articleService:ArticleServiceImpl
+    private articleService:ArticleServiceImpl,
+    private commandeService:CommandeServiceImpl,
   ){}
 
   form = this.formBuilder.group({
@@ -152,7 +154,17 @@ export class FormCommandeComponent implements OnInit{
 
 
     onSubmitForm() {
-      throw new Error('Method not implemented.');
+      //on envoie la form ou ya le client, le total et la list genre des elemnts du panier sans l'article donc
+      const {article,...panier} = this.form.value // enleve article dans le reste mets le dans panier
+
+      //CommandeCreateForm
+      this.commandeService.create(panier).subscribe(data=>{
+        if(data.statuts==204){
+          console.log("creation reussi");
+          this.form.reset()
+          this.router.navigateByUrl("/commandes/all")
+        }
+      })
       }
 
       //retourn une interface

@@ -19,8 +19,8 @@ export class ClientImplService implements ClientService {
     ///clients/telephone/{telephone}"
     return  this.http.get<RestResponse<ClientFormCommande>>(`${this.API_URL}/telephone/${telephone}`);
   }
-  create(clientCreate: ClientCreate): Observable<RestResponse<ClientCreate[]>> {
-    return  this.http.post<RestResponse<ClientCreate[]>>(`${this.API_URL}`,clientCreate); //l'onformation a envoyer clientCreate
+  create(clientCreate: ClientCreate): Observable<RestResponse<ClientCreate>> {
+    return  this.http.post<RestResponse<ClientCreate>>(`${this.API_URL}`,clientCreate); //l'onformation a envoyer clientCreate
   }
 
   findAll(page:number,keyword:string=""): Observable<RestResponse<ClientListe[]>> {

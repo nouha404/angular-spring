@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 
 export interface ClientService {
   findAll(page:number,keyword:string): Observable<RestResponse<ClientListe[]>>;
-  create(clientCreate:ClientCreate): Observable<RestResponse<ClientCreate[]>>;
+  create(clientCreate:ClientCreate): Observable<RestResponse<ClientCreate>>;
   findByTel(telephone:string):Observable<RestResponse<ClientFormCommande>>;
 
 }
