@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ClientImplService } from '../../../core/services/Impl/client.impl.service';
 import { Router } from '@angular/router';
 import { ArticleServiceImpl } from '../../../core/services/Impl/article.impl.service';
@@ -32,13 +32,15 @@ export class FormCommandeComponent implements OnInit{
     }),
     //troisieme formulaire
     article:this.formBuilder.group({
-      idArticle:[],
+      id:[],
       libelle:["",[Validators.required,Validators.minLength(5)]],
       montant:[],
       quantite:[0,[Validators.required,Validators.min(1)]],
       qteStock:[],
       prix:[]
 
+    },{
+      Validators:this.validateQteCommande()
     })
 
   });
@@ -58,14 +60,17 @@ export class FormCommandeComponent implements OnInit{
     if (tel?.length==9) {
       //des qu'il recuperer il subsribe et test le status du response
       this.clientService.findByTel(tel).subscribe(response=>{
-        if (response.statuts==200) {
+        if (response.statuts==201) {
           //charger sur le formulaire
           //const {numVilla,quartier, ...data} = response.results //destruction , recuperer les champs enumerer et les autres champ non enumerer il laisse dans data. vu que je nai pas le meme dto en back et flemme daller laba
           this.client.patchValue(response.results) //ecrase les anciens donnée pour les nouveaux
+          console.log(response.results);
 
-        } if(tel?.length>9){
+        }
+
+        if(tel?.length>9){
           //vider le champ
-          this.client.reset(  )
+          this.client.reset()
         }
 
       })
@@ -76,10 +81,10 @@ export class FormCommandeComponent implements OnInit{
 
     onSearchProduitByLibelle() {
       let libelle =this.article.get("libelle")?.value
-      if (libelle?.length>=10) {
+      if (libelle?.length>=5) {
 
         this.articleService.findByLibelle(libelle).subscribe(response=>{
-          if (response.statuts==200) {
+          if (response.statuts==201) {
             this.article.patchValue(response.results)
 
           }
@@ -96,8 +101,34 @@ export class FormCommandeComponent implements OnInit{
       throw new Error('Method not implemented.');
       }
 
+      //retourn une interface
+    validateQteCommande() : ValidatorFn{
+      //cette validator sapplique sur quantite et qteStock
+
+      return (control:AbstractControl): ValidationErrors|null=>{
+        //recuperer les deux champs
+        const qteCommande = this.article.get("quantite")?.value
+        const qteStock = this.article.get("qteStock")?.value
+
+        if(isNaN(Number.parseInt(qteCommande))){ //essai de convertir et ce n'est pas un nombre :
+          return {'isNotNumber':true}
+
+        }
+
+        if(Number.parseInt(qteCommande) > Number.parseInt(qteStock)  ){
+          return {'qteIsNotValid':true}
+
+        }
+
+        return null; //tout est valide s'il arrive sur return null
+
+      };
+
+    }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log("innit");
+
   }
 
 

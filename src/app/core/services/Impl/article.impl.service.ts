@@ -19,4 +19,6 @@ export class ArticleServiceImpl implements ArticleService {
     return  this.http.get<RestResponse<ArticleModel>>(`${this.API_URL}/libelle/${libelle}`);
   }
 
+
+
 }

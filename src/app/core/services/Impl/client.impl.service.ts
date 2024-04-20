@@ -15,17 +15,17 @@ export class ClientImplService implements ClientService {
 
   constructor(private http:HttpClient) {
   }
-  findByTel(telephone: string): Observable<RestResponse<ClientListe>> {
+  findByTel(telephone: string): Observable<RestResponse<ClientFormCommande>> {
     ///clients/telephone/{telephone}"
-    return  this.http.get<RestResponse<ClientListe>>(`${this.API_URL}/clients/telephone/${telephone}`);
+    return  this.http.get<RestResponse<ClientFormCommande>>(`${this.API_URL}/telephone/${telephone}`);
   }
   create(clientCreate: ClientCreate): Observable<RestResponse<ClientCreate[]>> {
-
     return  this.http.post<RestResponse<ClientCreate[]>>(`${this.API_URL}`,clientCreate); //l'onformation a envoyer clientCreate
   }
 
   findAll(page:number,keyword:string=""): Observable<RestResponse<ClientListe[]>> {
-
         return  this.http.get<RestResponse<ClientListe[]>>(`${this.API_URL}?page=${page}&telephone=${keyword}`);
     }
 }
+
+//

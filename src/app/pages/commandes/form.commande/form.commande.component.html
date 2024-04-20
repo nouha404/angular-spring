@@ -21,8 +21,6 @@
                             <small id="telephoneHelp" class="form-text text-danger">
                               Le tel doit contenir 9 chiffres
                             </small>
-
-
                         }
 
 
@@ -32,15 +30,20 @@
 
               <div class="col">
                   <input
+                          formControlName="nomComplet"
+                          name="nomComplet"
                           readonly
                           placeholder="nomComplet"
-                          formControlName="nomComplet"
+
                           type="text" class="form-control"  aria-label="First name">
+
               </div>
+
 
               <div class="col">
                   <input
                           formControlName="adresseComplet"
+                          name="adresseComplet"
                           placeholder="Adresse"
                           type="text" class="form-control"  aria-label="Last name">
               </div>
@@ -52,10 +55,10 @@
 
         >
             <div class="row" formArrayName="article">
+
               <div class="col">
                   <input
-
-                          name="article"
+                          name="libelle"
                           (keyup)="onSearchProduitByLibelle()"
                           formControlName="libelle"
                           placeholder="Libelle"
@@ -63,12 +66,34 @@
               </div>
 
               <div class="col">
+
                   <input
                           name="quantite"
                           formControlName="qteStock"
                           placeholder="Quantite stock"
+                          readonly
 
                           type="text" class="form-control"  aria-label="Last name">
+
+                          @if (article.controls['quantite'].errors && (article.controls['quantite'].dirty || article.controls['quantite'].touched)) {
+                            <small id="telephoneHelp" class="form-text text-danger">
+                              La doit etre positif
+                            </small>
+                         }
+                         @if (article.errors && (article.controls['quantite'].dirty || article.controls['quantite'].touched)) {
+                          @if (article.errors['qteIsNotValid']) {
+                            <small id="telephoneHelp" class="form-text text-danger">
+                              La quantite doit etre inferieur a qteStocl
+                            </small>
+                          }
+                          @if (article.errors['isNotNumber']) {
+                            <small id="telephoneHelp" class="form-text text-danger">
+                              La quantite doit etre un nombre
+                            </small>
+                          }
+
+
+                      }
               </div>
 
                 <div class="col">
@@ -76,6 +101,7 @@
                             name="prix"
                             formControlName="prix"
                             placeholder="Prix Unitaire"
+                            readonly
                             type="text" class="form-control"  aria-label="First name">
                 </div>
 
@@ -89,7 +115,10 @@
 
 
                 <div class="col">
-                    <button (click)="addProduitToPanier()" class="btn btn-outline-success">Ajouter</button>
+                    <button
+                            [disabled]="article.invalid"
+                            (click)="addProduitToPanier()"
+                            class="btn btn-outline-success">Ajouter</button>
                 </div>
 
             </div>
@@ -110,10 +139,10 @@
             </thead>
             <tbody>
             <tr >
-                <td >libelle</td>
-                <td  >prix</td>
-                <td  >quantite</td>
-                <td  >montant</td>
+                <td ></td>
+                <td  ></td>
+                <td  ></td>
+                <td  ></td>
             </tr>
             </tbody>
 
