@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ClientImplService } from '../../../core/services/Impl/client.impl.service';
 import { Router } from '@angular/router';
 import { ArticleServiceImpl } from '../../../core/services/Impl/article.impl.service';
@@ -22,6 +22,7 @@ export class FormCommandeComponent implements OnInit{
   ){}
 
   form = this.formBuilder.group({
+    articlesPanier:this.formBuilder.array([],Validators.min(1)), // pour qu'il ne le prend pas comme un formgrouppe
     total:new  FormControl(0,[]),
     //deuxieme formulaire
     client:this.formBuilder.group({
@@ -53,6 +54,13 @@ export class FormCommandeComponent implements OnInit{
   get article(){
     return this.form.controls["article"] as FormGroup
   }
+  get total(){
+    return this.form.controls["total"] as FormControl
+  }
+  get articlesPanier(){
+    return this.form.controls["articlesPanier"] as FormArray
+  }
+
 
   onSearchClientByTel() {
     let tel =this.client.get("telephone")?.value
@@ -86,6 +94,16 @@ export class FormCommandeComponent implements OnInit{
         this.articleService.findByLibelle(libelle).subscribe(response=>{
           if (response.statuts==201) {
             this.article.patchValue(response.results)
+            let position:number = this.articlesPanier.getRawValue().findIndex(article=>article.id==this.article.get("id")?.value) //retourne un tableaud'objet se trouvant dans le panier. Si l'id de larticle = larticle que je veux ajouter...
+            //se trouve dans le panier
+            if(position!=-1){
+              //larticle qui est dans le panier
+              const articleDuPanier = this.articlesPanier.at(position)
+              //sa quantite du tableau
+              let qte = Number.parseInt(articleDuPanier.get("quantite")?.value)
+
+              this.article.get("qteStock")?.setValue(this.article.get("qteStock")?.value - qte )
+            }
 
           }
         })
@@ -93,9 +111,45 @@ export class FormCommandeComponent implements OnInit{
     }
     }
 
+
+
     addProduitToPanier() {
-      throw new Error('Method not implemented.');
+      //articlesPanier prendre clone de l'objet
+      let prix:number = this.article.get("prix")?.value
+      let qantiteCommande:number = this.article.get("quantite")?.value
+      let montant:number = prix * qantiteCommande;
+      //nouvelle valeur du total
+      this.total.setValue(this.total.value+montant)
+      this.article.get("montant")?.setValue(montant)
+
+      //recupere larticle du tableau , compare son id avec l'id de celle que je veux ajouter
+      let position:number = this.articlesPanier.getRawValue().findIndex(article=>article.id==this.article.get("id")?.value) //retourne un tableaud'objet se trouvant dans le panier. Si l'id de larticle = larticle que je veux ajouter...
+
+      if(position==-1){
+        //n'existe pas donc on ajoute
+        this.articlesPanier.push(this.formBuilder.group({
+          id:[this.article.get("id")?.value],
+          libelle:[this.article.get("libelle")?.value],
+          montant:[this.article.get("montant")?.value],
+          quantite:[this.article.get("quantite")?.value],
+          qteStock:[this.article.get("qteStock")?.value],
+          prix:[this.article.get("prix")?.value]
+
+        })) //son copie, son clone
+
+
+      }else{
+          //recuperer la valeur de la tableau et la modifier
+          const articleDuPanier = this.articlesPanier.at(position)
+          articleDuPanier.get("quantite")?.setValue(Number.parseInt(articleDuPanier.get("quantite")?.value+qantiteCommande))
+          articleDuPanier.get("montant")?.setValue(articleDuPanier.get("montant")?.value+montant)
       }
+      this.article.reset()
+
+
+      }
+
+
 
     onSubmitForm() {
       throw new Error('Method not implemented.');

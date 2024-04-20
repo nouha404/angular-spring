@@ -138,12 +138,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr >
-                <td ></td>
-                <td  ></td>
-                <td  ></td>
-                <td  ></td>
-            </tr>
+              @for (item of this.articlesPanier.controls; track $index){
+                <tr >
+                  <td>{{ item.get("libelle")?.value }}</td>
+                  <td>{{ item.get("prix")?.value }}</td>
+                  <td>{{ item.get("quantite")?.value }}</td>
+                  <td>{{ item.get("montant")?.value }}</td>
+              </tr>
+
+              }
+
             </tbody>
 
         </table>
@@ -154,11 +158,11 @@
                 <button type="button" class="btn btn-info fs-5">
                     Total <span class="badge  text-white fs-4 font-monospace"
 
-                >0.0</span>
+                >{{ this.total.value }}</span>
                 </button>
             </div>
             <div class="col  ">
-                <button type="submit"    class="btn btn-success float-end">
+                <button [disabled]="client.invalid ||articlesPanier.invalid"    class="btn btn-success float-end">
                     Valider la commande
                 </button>
             </div>
