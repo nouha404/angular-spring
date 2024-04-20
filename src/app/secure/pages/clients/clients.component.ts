@@ -1,12 +1,12 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {RestResponse} from "../../core/models/rest.response";
-import {ClientListe} from "../../core/models/client.liste";
-import {ClientImplService} from "../../core/services/Impl/client.impl.service";
+import {RestResponse} from "../../../core/models/rest.response";
+import {ClientListe} from "../../../core/models/client.liste";
+import {ClientImplService} from "../../../core/services/Impl/client.impl.service";
 import {CommonModule} from "@angular/common";
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { PaginationComponent } from '../../components/pagination/pagination.component';
-import {PaginationModel} from "../../core/models/pagination.model";
+import {PaginationModel} from "../../../core/models/pagination.model";
 import { Subscription } from 'rxjs';
+import { PaginationComponent } from '../../../core/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-clients',

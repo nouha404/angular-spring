@@ -5,7 +5,7 @@
       <div class="card-header">
         <h3>Liste des Clients</h3>
         <div class="my- float-end">
-          <a routerLink="form"
+          <a routerLink="/admin/form"
             class="btn btn-outline-info ">Nouveau</a>
 
         </div>
@@ -40,7 +40,7 @@
                 <td>{{item.adresseComplet}}</td>
 
                 <td>
-                  <a [routerLink]="'/commandes/' + item.id" class="btn btn-outline-success">Mes Commandes</a>
+                  <a [routerLink]="'/admin/commandes/' + item.id" class="btn btn-outline-success">Mes Commandes</a>
                   <a class="btn btn-outline-success">Nouveau commande</a>
                 </td>
              </tr>

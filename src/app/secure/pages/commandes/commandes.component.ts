@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {RestResponse} from "../../core/models/rest.response";
-import {CommandeListe} from "../../core/models/commande.liste";
-import {CommandeServiceImpl} from "../../core/services/Impl/commande.service.impl";
+import {RestResponse} from "../../../core/models/rest.response";
+import {CommandeListe} from "../../../core/models/commande.liste";
+import {CommandeServiceImpl} from "../../../core/services/Impl/commande.service.impl";
 import {CommonModule} from "@angular/common";
 import {ActivatedRoute, RouterLink, RouterLinkActive} from "@angular/router";
-import { PaginationComponent } from '../../components/pagination/pagination.component';
-import {PaginationModel} from "../../core/models/pagination.model";
+
+import {PaginationModel} from "../../../core/models/pagination.model";
+import { PaginationComponent } from '../../../core/components/pagination/pagination.component';
 
 @Component({
   selector: 'app-commandes',

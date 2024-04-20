@@ -3,8 +3,8 @@ import {Router, RouterLink, RouterLinkActive, RouterModule} from "@angular/route
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [RouterModule,RouterLink,RouterLinkActive],
+  standalone: false,
+  //imports: [RouterModule,RouterLink,RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -13,7 +13,7 @@ export class HeaderComponent{
   }
 onLoadView() {
   this.router.navigateByUrl('/',{skipLocationChange:true}).then(()=>{
-         this.router.navigate([`/commandes/all`])
+         this.router.navigate([`/admin/commandes/all`])
   })
 }
 
